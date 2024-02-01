@@ -4,6 +4,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    // TODO: Desabilitar o "strict"
     "strict": false,
     "outDir": "./dist",
     "skipLibCheck": true
