@@ -8,7 +8,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/usuario", async (req, res) => {
-  const usuario = req.body.nome;
+  console.log('requisição: '+req.body);
+
+  const nome = req.body.nome;
 
   try {
     const docRef = await firestore.addDoc(
@@ -18,14 +20,14 @@ app.post("/usuario", async (req, res) => {
       }
     );
 
-    res.send(docRef.id);
+    res.send("Usuario adicionado com sucesso: " + docRef.id);
   } catch (e) {
-    console.log(e);
+    console.log("Erro ao adicionar usuário: ", e);
 
     res.status(500).send(e);
   }
 });
 
 app.listen(3000, function () {
-  console.log("Servidor rodando na porta http://localhost:3000");
+  console.log("Servidor rodando em http://localhost:3000");
 });
