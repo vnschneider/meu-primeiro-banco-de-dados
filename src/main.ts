@@ -4,7 +4,7 @@ import { db, firestore } from "../banco_de_dados/firebase";
 const app = express();
 
 // TODO: Inserir no código para utilização do json na requisição
-app.use(express.json());
+app.use(express.json())
 
 app.get("/", (req, res) => {
   res.send("Bem vindo a minha primeira API");
@@ -12,12 +12,16 @@ app.get("/", (req, res) => {
 
 app.post("/usuario", async (req, res) => {
   const nome = req.body.nome;
+  const email = req.body.email
+  const telefone = req.body.telefone
 
   try {
     const docRef = await firestore.addDoc(
       firestore.collection(db, "usuarios"),
       {
         nome: nome,
+        email: email,
+        telefone: telefone
       }
     );
     //TODO: Adicionar textos de apoio para a melhor leitura das  respostas
