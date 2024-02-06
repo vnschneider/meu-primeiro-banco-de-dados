@@ -39,7 +39,7 @@ app.get('/listarUsuarios', async (req, res) =>{
 
     const usuariosLista  = usuarios.docs.map((doc) => ({
       id: doc.id,
-      ...doc.data(),
+      ...doc.data(),    
     }))
   
     res.send(usuariosLista) 
