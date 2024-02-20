@@ -20,17 +20,23 @@ app.get("/", (req, res) => {
 
 app.post("/formulario", async (req, res) => {
   const nome = req.body.nome;
+  const telefone = req.body.telefone;
+  const email = req.body.email;
+  const descricao = req.body.descricao;
 
   console.log(req.body);
   try {
     const docRef = await firestore.addDoc(
       firestore.collection(db, "formulario"),
       {
-        nome: nome
+        nome: nome,
+        telefone: telefone,
+        email: email,
+        descricao: descricao,
       }
     );
 
-    res.status(200).send("Resposta enviada com sucesso: " + docRef.id);
+    res.send("Resposta enviada com sucesso: " + docRef.id);
   } catch (e) {
     console.log("Erro ao enviar resposta: ", e);
     res.status(500).send(e);
@@ -39,16 +45,16 @@ app.post("/formulario", async (req, res) => {
 
 app.get("/listarFormulario", async (req, res) => {
   try {
-    const usuarios = await firestore.getDocs(
+    const formulario = await firestore.getDocs(
       firestore.collection(db, "formulario")
     );
 
-    const usuariosLista = usuarios.docs.map((doc) => ({
+    const formularioLista = formulario.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
 
-    res.send(usuariosLista);
+    res.send(formularioLista);
   } catch (e) {
     console.log("Erro ao listar usuários: " + e);
 
