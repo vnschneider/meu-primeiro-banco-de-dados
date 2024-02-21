@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
 const firebase_1 = require("../banco_de_dados/firebase");
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 // TODO: Inserir no código para utilização do json na requisição
 app.use(express_1.default.json());
