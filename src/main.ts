@@ -56,9 +56,9 @@ app.get("/listarFormulario", async (req, res) => {
 
     res.send(formularioLista);
   } catch (e) {
-    console.log("Erro ao listar usuários: " + e);
+    console.log("Erro ao listar formulário: " + e);
 
-    res.status(500).send("Erro ao listar usuários: " + e);
+    res.status(500).send("Erro ao listar formulário: " + e);
   }
 });
 
