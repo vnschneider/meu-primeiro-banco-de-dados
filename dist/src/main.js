@@ -20,8 +20,8 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)({
-    "origin": "*",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 }));
 app.get("/", (req, res) => {
     return res.json("Bem vindo a minha primeira API");
@@ -57,29 +57,29 @@ app.get("/listarFormulario", (req, res) => __awaiter(void 0, void 0, void 0, fun
         res.status(500).send("Erro ao listar formulário: " + e);
     }
 }));
-app.put("/atualizarUsuario/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.put("/atualizarFormulario/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const nome = req.body.nome;
     try {
-        yield firebase_1.firestore.updateDoc(firebase_1.firestore.doc(firebase_1.db, "usuarios", id), {
+        yield firebase_1.firestore.updateDoc(firebase_1.firestore.doc(firebase_1.db, "formulario", id), {
             nome: nome,
         });
-        res.send("Usuário atualizado com sucesso!");
+        res.send("Formulário atualizado com sucesso!");
     }
     catch (e) {
-        console.log("Erro ao atualizar usuário: " + e);
-        res.status(500).send("Erro ao atualizar usuário: " + e);
+        console.log("Erro ao atualizar formulário: " + e);
+        res.status(500).send("Erro ao atualizar formulário: " + e);
     }
 }));
-app.delete("/deletarUsuario/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.delete("/deletarFormulario/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        yield firebase_1.firestore.deleteDoc(firebase_1.firestore.doc(firebase_1.db, "usuarios", id));
-        res.send("Usuário deletado com sucesso!");
+        yield firebase_1.firestore.deleteDoc(firebase_1.firestore.doc(firebase_1.db, "formulario", id));
+        res.send("Formulário deletado com sucesso!");
     }
     catch (e) {
-        console.log("Erro ao deletar usuario: " + e);
-        res.status(500).send("Erro ao deletar usuario: " + e);
+        console.log("Erro ao deletar formulário: " + e);
+        res.status(500).send("Erro ao deletar formulário: " + e);
     }
 }));
 app.listen(3000, function () {
